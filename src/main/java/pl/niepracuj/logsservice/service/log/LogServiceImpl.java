@@ -20,7 +20,7 @@ public class LogServiceImpl implements LogService {
 
     @Override
     public LogDto saveLog(LogDto logDto) {
-        Log log = logMapper.toNewEntity(logDto);
-        return logMapper.toDto(logRepository.save(log));
+        Log log = logMapper.logDtoToLog(logDto);
+        return logMapper.logToLogDto(logRepository.save(log));
     }
 }

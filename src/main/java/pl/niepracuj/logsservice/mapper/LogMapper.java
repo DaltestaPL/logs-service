@@ -1,23 +1,13 @@
 package pl.niepracuj.logsservice.mapper;
 
-import org.springframework.stereotype.Component;
+import org.mapstruct.Mapper;
 import pl.niepracuj.logsservice.model.Log;
 import pl.niepracuj.logsservice.model.LogDto;
 
-@Component
-public class LogMapper {
+@Mapper(componentModel = "spring")
+public interface LogMapper {
 
-    public LogDto toDto(Log log){
-        return LogDto.builder()
-                .id(log.getId())
-                .loggedOn(log.getLoggedOn())
-                .message(log.getMessage())
-                .build();
-    }
-    public Log toNewEntity(LogDto logDto){
-        return  Log.builder()
-                .loggedOn(logDto.getLoggedOn())
-                .message(logDto.getMessage())
-                .build();
-    }
+    LogDto logToLogDto(Log log);
+
+    Log logDtoToLog(LogDto logDto);
 }
